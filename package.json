@@ -1,0 +1,58 @@
+{
+  "name": "@impoh/nuxt",
+  "version": "0.0.5",
+  "description": "vite-ssr-api,ssr,vue,nuxt",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "push": "npm publish --access publish",
+    "rm": "npm unpublish @impoh/nuxt@0.0.3 --force"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    },
+    "./core/nuxt": {
+      "import": "./core/nuxt.js"
+    },
+    "./plugins/init": {
+      "import": "./plugins/init.js"
+    },
+    "./plugin": {
+      "import": "./plugin.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [],
+  "author": "impoh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:impohcom/vite-ssr-api.git"
+  },
+  "homepage": "https://github.com/impohcom/vite-ssr-api",
+  "files": [
+    "compat",
+    "components",
+    "core",
+    "plugins",
+    "package.json",
+    "index.js",
+    "src",
+    "plugin.js"
+  ],
+  "dependencies": {
+    "@vueuse/head": "^1.1.26",
+    "cookie-es": "^1.0.0",
+    "destr": "^2.0.0",
+    "h3": "^1.7.1",
+    "hookable": "^5.5.3",
+    "ofetch": "^1.1.1",
+    "ohash": "^1.1.2",
+    "unctx": "^2.3.1"
+  }
+}
