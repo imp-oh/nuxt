@@ -28,6 +28,15 @@ export default function ViteSsrPlugin (options = []) {
   let server
   return {
     name: 'impoh-nuxt', // 必须的，将会在 warning 和 error 中显示
+    config (config, { command }) {
+      if (!config.optimizeDeps || (config.optimizeDeps && !config.optimizeDeps.exclude)) {
+        config.optimizeDeps = { exclude: ['@impoh/nuxt'] }
+      }
+
+      if (config.optimizeDeps && config.optimizeDeps.exclude && !config.optimizeDeps.exclude.includes('@impoh/nuxt')) {
+        config.optimizeDeps.exclude.push('@impoh/nuxt')
+      }
+    },
     configureServer (_server) {
       server = _server
     },
