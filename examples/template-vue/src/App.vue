@@ -1,26 +1,20 @@
+<script setup>
+import { useNuxtApp } from '@impoh/nuxt'
+const nuxtApp = useNuxtApp()
+const onResolve = nuxtApp.deferHydration()
+</script>
+
 <template>
-  <div>
-    <router-link to="/">Home</router-link>|
-    <router-link to="/home">Home</router-link>|
-    <router-link to="/about">About</router-link>
-    <router-link to="/store">Store</router-link>
-
-    <div>
-
-      <a href="/">a页面Home</a>
-      <a href="/about">a页面about</a>
-    </div>
-    <router-view v-slot="{ Component }">
-
-      <Suspense>
-        <div>
-          <component :is="Component" />
-        </div>
-      </Suspense>
-    </router-view>
-  </div>
+  <router-view v-slot="{ Component }">
+    <!-- 此组件用于控制请求 必须要的 -->
+    <Suspense @resolve="onResolve">
+      <component :is="Component" />
+      <!-- 加载中状态 -->
+      <template #fallback>
+        正在加载...
+      </template>
+    </Suspense>
+  </router-view>
 </template>
 
-<style>
-
-</style>
+<style></style>

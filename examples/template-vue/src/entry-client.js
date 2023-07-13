@@ -1,28 +1,37 @@
-
+import { nextTick } from 'vue'
 import { createApp } from './main'
 
 import 'element-plus/dist/index.css'
 import { applyPlugins } from '@impoh/nuxt/core/nuxt'
-import ceInit from '@impoh/nuxt/plugins/init'
+import initPlugin from '@impoh/nuxt/plugins/init'
 
 
+// 使用
+render()
 
-const { app, router, cessr } = createApp()
+export default async function render () {
+  const { app, router, nuxt } = createApp()
 
-
-
-// wait until router is ready before mounting to ensure hydration match
-router.isReady().then(async () => {
-  app.mount('#app')
+  await router.isReady()
+  console.log('hydrated')
 
   try {
-    // 注入初始化代码
-    await applyPlugins(cessr, [ceInit])
-
-    await cessr.hooks.callHook("app:created", app)
-  } catch (error) {
-
+    await applyPlugins(nuxt, [initPlugin])
+  } catch (err) {
+    await nuxt.callHook("app:error", err)
+    nuxt.payload.error = nuxt.payload.error || err
   }
-  console.log('hydrated')
-})
+
+  try {
+    await nuxt.hooks.callHook("app:created", app)
+    await nuxt.hooks.callHook("app:beforeMount", app)
+    app.mount('#app')
+    await nuxt.hooks.callHook("app:mounted", app)
+    await nextTick()
+  } catch (err) {
+    await nuxt.callHook("app:error", err)
+    nuxt.payload.error = nuxt.payload.error || err
+  }
+}
+
 

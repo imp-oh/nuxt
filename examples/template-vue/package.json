@@ -16,7 +16,7 @@
     "debug": "node --inspect-brk server"
   },
   "dependencies": {
-    "@impoh/nuxt": "0.0.5",
+    "@impoh/nuxt": "0.0.6-beta.2",
     "element-plus": "^2.3.7",
     "pinia": "^2.0.33",
     "vite": "^4.3.9",

@@ -4,11 +4,10 @@ import { createApp } from './main'
 
 import { renderHeadToString } from '@impoh/nuxt'
 import { applyPlugins } from '@impoh/nuxt/core/nuxt'
-import ceInit from '@impoh/nuxt/plugins/init'
-
+import initPlugin from '@impoh/nuxt/plugins/init'
 
 export async function render (url, manifest) {
-  const { app, router, cessr, head } = createApp()
+  const { app, router, nuxt, head } = createApp()
 
 
 
@@ -28,14 +27,14 @@ export async function render (url, manifest) {
 
   try {
     // 注入初始化代码
-    await applyPlugins(cessr, [ceInit])
-
-    await cessr.hooks.callHook("app:created", app)
+    await applyPlugins(nuxt, [initPlugin])
+    await nuxt.hooks.callHook("app:created", app)
   } catch (error) {
-
+    await nuxt.hooks.callHook("app:error", err)
+    nuxt.payload.error = nuxt.payload.error || err
   }
 
-  return [html, preloadLinks, heads, cessr, teleports]
+  return [html, preloadLinks, heads, nuxt, teleports]
 }
 
 

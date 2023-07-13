@@ -19,7 +19,7 @@ export function createApp () {
     current: 0,
   })
 
-  const cessr = createNuxtApp({
+  const nuxt = createNuxtApp({
     baseURL: 'http://127.0.0.1:5200',
     vueApp: app,
     ssrContext: {},
@@ -38,5 +38,5 @@ export function createApp () {
 
 
 
-  return { app, router, cessr, head }
+  return { app, router, nuxt, head }
 }

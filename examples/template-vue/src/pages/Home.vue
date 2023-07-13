@@ -104,7 +104,7 @@ const setData = reactive({
 let testList = await useFetch('/api/test/list')
 console.log(testList.error)
 
-setData.tableData = useGet(testList, 'data.data', [])
+setData.tableData = useGet(testList, 'data.value.data', [])
 
 for (let i in setData.tableData) {
   let row = setData.tableData[i]
