@@ -1,17 +1,20 @@
 <script setup>
 import { useNuxtApp } from '@impoh/nuxt'
 const nuxtApp = useNuxtApp()
+// The control page is loaded
 const onResolve = nuxtApp.deferHydration()
 </script>
 
 <template>
   <router-view v-slot="{ Component }">
-    <!-- 此组件用于控制请求 必须要的 -->
+    <!-- @resolve="onResolve" The control page is loaded -->
     <Suspense @resolve="onResolve">
-      <component :is="Component" />
-      <!-- 加载中状态 -->
+      <div class="page">
+        <component :is="Component" />
+      </div>
+      <!-- Loading state -->
       <template #fallback>
-        正在加载...
+        Loading state...
       </template>
     </Suspense>
   </router-view>

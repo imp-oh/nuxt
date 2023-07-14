@@ -1,47 +1,30 @@
 <script setup>
-import { reactive, onMounted } from 'vue'
-import { useFetch, useGet } from '@impoh/nuxt'
+import { useHead } from '@impoh/nuxt'
 
-const setData = reactive({
-  tableData: [],
-  tableData2: [],
+useHead({
+  title: 'This is a lightweight nuxt api',
+  meta: [
+    { name: 'keywords', content: 'vite,vue3,ssr,nuxt-api' },
+    { name: 'description', content: 'Lightweight nuxt-core plugin' },
+  ]
 })
-
-
-
-
-let testList2 = await useFetch('/api/test/list?id=12')
-setData.tableData = useGet(testList2, 'data.value.data', [])
-
-
-onMounted(async () => {
-  let testList = await useFetch('/api/test/list', {
-    server: false,
-  })
-
-  setData.tableData2 = testList
-
-})
-
-// setData.tableData2 = useGet(testList2, 'data.data', [])
-// console.log(testList.error)
-
-
-
 </script>
 <template>
-  <div>
-    爱你一五年
-
-    <div>=-===========</div>
-    {{ testList2 }}
-
-    <ul>
-      <li v-for="item in setData.tableData">{{ item }}</li>
-    </ul>
-
-    <!-- {{testList2}} -->
-    {{ setData.tableData2 }}
+  <div class="mian">
+    <h1>nuxt api</h1>
+    <div class="link-box">
+      <router-link to="/api">useApi</router-link>
+      <router-link to="/use">use</router-link>
+    </div>
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+.mian {
+  text-align: center;
+}
+
+.link-box a {
+  display: inline-block;
+  width: 100px;
+}
+</style>

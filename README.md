@@ -1,14 +1,16 @@
-# vite-ssr-api是一个 ssr 渲染插件的API
+# nuxt  plug-in
 
- "version": "0.0.4-beta.4",
+The core code is nuxt-core，Mainly in order to reduce the burden of the frame, and the APi use is consistent, the new useGet, useSet, the use of the two methods please see lodash.js
 
-因为电脑配置太低，没法驱动nuxt框架，所以把nuxt`Api`独立出来使用，还在不断完善，感觉现有的已经够用。
+[Presentation page](https://www.impoh.com/) 
 
-所以在使用的时候直接去 nuxt 官网开API
+[document](https://nuxt.com/docs/api/composables/use-app-config)
 
-毕竟没时间去完善文档，我先尝鲜！！！！等有 初始话一个框架到github上
+[github address](https://github.com/impohcom/nuxt)
 
-##  目前支持的api
+[template-vue](https://github.com/impohcom/nuxt/tree/main/examples/template-vue)
+
+##  Supported apis
 
 ``` js
 export { useGet, useSet } from './core/lodash.js'
@@ -25,3 +27,7 @@ export { onNuxtReady } from "./core/ready.js"
 export { useNuxtApp } from './core/nuxt.js'
 ```
 
+##  components
+```vue
+	<ClientOnly> slots .... </ClientOnly> 
+```

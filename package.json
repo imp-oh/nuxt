@@ -1,6 +1,6 @@
 {
   "name": "@impoh/nuxt",
-  "version": "0.0.5",
+  "version": "0.0.6-beta.4",
   "description": "vite-ssr-api,ssr,vue,nuxt",
   "main": "index.js",
   "type": "module",
@@ -32,9 +32,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:impohcom/vite-ssr-api.git"
+    "url": "git@github.com:impohcom/nuxt.git"
   },
-  "homepage": "https://github.com/impohcom/vite-ssr-api",
+  "homepage": "https://github.com/impohcom/nuxt",
   "files": [
     "compat",
     "components",
