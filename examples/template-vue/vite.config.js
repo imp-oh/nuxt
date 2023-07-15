@@ -19,7 +19,7 @@ export default defineConfig(({ command, ssrBuild }) => ({
     vueJsx(),
   ],
   build: {
-    minify: false,
+    minify: true,
   },
 
 }))

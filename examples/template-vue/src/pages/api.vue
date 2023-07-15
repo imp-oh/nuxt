@@ -1,5 +1,6 @@
 <script setup>
-
+import { useFetch } from "@impoh/nuxt"
+// await useFetch('/api/xxxxx/....')
 </script>
 <template>
   <div>

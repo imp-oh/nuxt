@@ -1,38 +1,22 @@
 import { basename } from 'node:path'
 import { renderToString } from 'vue/server-renderer'
 import { createApp } from './main'
-
 import { renderHeadToString } from '@impoh/nuxt'
-import { applyPlugins } from '@impoh/nuxt/core/nuxt'
-import initPlugin from '@impoh/nuxt/plugins/init'
+
 
 export async function render (url, manifest) {
   const { app, router, nuxt, head } = createApp()
-
-
-
   // set the router to the desired URL before rendering
   await router.push(url)
   await router.isReady()
-
 
   const ctx = {}
   let html = await renderToString(app, ctx)
   const heads = head ? await renderHeadToString(head) : {}
   const teleports = renderTeleports(ctx.teleports)
+  
   const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
 
-
-
-
-  try {
-    // 注入初始化代码
-    await applyPlugins(nuxt, [initPlugin])
-    await nuxt.hooks.callHook("app:created", app)
-  } catch (error) {
-    await nuxt.hooks.callHook("app:error", err)
-    nuxt.payload.error = nuxt.payload.error || err
-  }
 
   return [html, preloadLinks, heads, nuxt, teleports]
 }

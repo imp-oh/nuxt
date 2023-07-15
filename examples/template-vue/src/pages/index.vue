@@ -1,5 +1,6 @@
 <script setup>
 import { useHead } from '@impoh/nuxt'
+import ImportType from '@/components/ImportType.vue'
 
 useHead({
   title: 'This is a lightweight nuxt api',
@@ -16,6 +17,8 @@ useHead({
       <router-link to="/api">useApi</router-link>
       <router-link to="/use">use</router-link>
     </div>
+
+    <ImportType></ImportType>
   </div>
 </template>
 <style scoped>
