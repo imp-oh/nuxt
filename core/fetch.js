@@ -4,6 +4,13 @@ import { useRequestFetch } from "./ssr.js";
 import { useAsyncData } from "./asyncData.js"
 
 
+/**
+ * 
+ * @param {String} request url链接 
+ * @param {*} arg1 
+ * @param {*} arg2 
+ * @returns 
+ */
 export function useFetch (request, arg1, arg2) {
   const [opts = {}, autoKey] = typeof arg1 === "string" ? [{}, arg1] : [arg1, arg2]
 
@@ -74,7 +81,13 @@ export function useFetch (request, arg1, arg2) {
 }
 
 
-
+/**
+ * 
+ * @param {*} request 
+ * @param {*} arg1 
+ * @param {*} arg2 
+ * @returns 
+ */
 export function useLazyFetch (request, arg1, arg2) {
   const [opts, autoKey] = typeof arg1 === "string" ? [{}, arg1] : [arg1, arg2]
   return useFetch(

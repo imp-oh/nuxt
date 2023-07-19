@@ -14,7 +14,7 @@ The core code is nuxt-core，Mainly in order to reduce the burden of the frame, 
 
 ``` js
 export { useGet, useSet } from './core/lodash.js'
-export { ClientOnly, useContext } from './core/components.js'
+export { ClientOnly } from './core/components.js'
 export { createHead, renderHeadToString, useHead } from '@vueuse/head'
 export { useAsyncData, useLazyAsyncData, useNuxtData, refreshNuxtData, clearNuxtData } from "./core/asyncData.js"
 export { useHydration } from "./core/hydrate.js"
@@ -28,6 +28,7 @@ export { useNuxtApp } from './core/nuxt.js'
 ```
 
 ##  components
+
 ```vue
 	<ClientOnly> slots .... </ClientOnly> 
 ```

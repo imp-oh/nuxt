@@ -1,4 +1,4 @@
-import { ref, onMounted, defineComponent, inject } from 'vue'
+import { ref, onMounted, defineComponent } from 'vue'
 
 export const ClientOnly = defineComponent({
   name: 'ClientOnly',
@@ -11,13 +11,4 @@ export const ClientOnly = defineComponent({
     return () => (show.value && slots.default ? slots.default() : null)
   },
 })
-
-const CONTEXT_SYMBOL = Symbol()
-export function provideContext (app, context) {
-  app.provide(CONTEXT_SYMBOL, context)
-}
-
-export function useContext () {
-  return inject(CONTEXT_SYMBOL)
-}
 

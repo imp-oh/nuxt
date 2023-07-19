@@ -5,6 +5,11 @@ import { onNuxtReady } from "./ready.js"
 
 const getDefault = () => null
 
+/**
+ * 
+ * @param  {...any} args 
+ * @returns 
+ */
 export function useAsyncData (...args) {
   const autoKey = typeof args[args.length - 1] === "string" ? args.pop() : void 0
   if (typeof args[0] !== "string") {
@@ -98,12 +103,8 @@ export function useAsyncData (...args) {
     return nuxt._asyncDataPromises[key]
   }
 
-
-
-
   const initialFetch = () => asyncData.refresh({ _initial: true })
   const fetchOnServer = options.server !== false && nuxt.payload.serverRendered
-
 
   if (process.server && fetchOnServer && options.immediate) {
 
@@ -159,6 +160,11 @@ export function useAsyncData (...args) {
 }
 
 
+/**
+ * 
+ * @param  {...any} args 
+ * @returns 
+ */
 export function useLazyAsyncData (...args) {
   const autoKey = typeof args[args.length - 1] === "string" ? args.pop() : void 0
   if (typeof args[0] !== "string") {
@@ -168,6 +174,12 @@ export function useLazyAsyncData (...args) {
   return useAsyncData(key, handler, { ...options, lazy: true }, null)
 }
 
+
+/**
+ * 
+ * @param {*} key 
+ * @returns 
+ */
 export function useNuxtData (key) {
   const nuxt = useNuxtApp()
   if (!(key in nuxt.payload.data)) {
@@ -178,6 +190,12 @@ export function useNuxtData (key) {
   }
 }
 
+
+/**
+ * 
+ * @param {*} keys 
+ * @returns 
+ */
 export async function refreshNuxtData (keys) {
   if (process.server) {
     return Promise.resolve()
@@ -187,6 +205,11 @@ export async function refreshNuxtData (keys) {
   await useNuxtApp().hooks.callHookParallel("app:data:refresh", _keys)
 }
 
+
+/**
+ * 
+ * @param {*} keys 
+ */
 export function clearNuxtData (keys) {
   const nuxtApp = useNuxtApp()
   const _allKeys = Object.keys(nuxtApp.payload.data)
