@@ -1,3 +1,4 @@
+import { useGet } from '@impoh/nuxt'
 
 function parseVueRequest (id) {
   const [filename, rawQuery] = id.split(`?`, 2)
@@ -23,13 +24,28 @@ function parseVueRequest (id) {
   }
 }
 
-export default function ViteSsrPlugin (options = []) {
 
+// https://cn.vitejs.dev/config/ssr-options.html#ssr-external
+export default function ViteSsrPlugin (options = {}) {
   let server
 
   const optimizedDepChunkRE = /\/chunk-[A-Z\d]{8}\.js/
   return {
     name: 'impoh-nuxt', // 必须的，将会在 warning 和 error 中显示
+    config (config, { command, mode, ssrBuild }) {
+      if (command === 'build' && ssrBuild) {
+
+        let external = useGet(options, ['ssr', 'external'], [])
+        let vite_external = useGet(config, ['ssr', 'external'], [])
+
+        let noExternal = useGet(options, ['ssr', 'noExternal'], [])
+        let vite_noExternal = useGet(config, ['ssr', 'noExternal'], [])
+
+        config.ssr.external = [...vite_external, ...external]
+        config.ssr.noExternal = (typeof noExternal === 'boolean') ? noExternal : [...vite_noExternal, ...noExternal]
+
+      }
+    },
     // config (config, { command }) {
     //   if (!config.optimizeDeps || (config.optimizeDeps && !config.optimizeDeps.exclude)) {
     //     config.optimizeDeps = { exclude: ['@impoh/nuxt'] }

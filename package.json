@@ -1,12 +1,12 @@
 {
   "name": "@impoh/nuxt",
-  "version": "0.0.7-beta.0",
+  "version": "0.0.7-beta.3",
   "description": "vite-ssr-api,ssr,vue,nuxt",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "push": "npm publish --access publish",
-    "rm": "npm unpublish @impoh/nuxt@0.0.3 --force"
+    "rm": "npm unpublish @impoh/nuxt@0.0.7-beta.1 --force"
   },
   "publishConfig": {
     "access": "public",

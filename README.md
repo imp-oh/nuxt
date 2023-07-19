@@ -32,3 +32,57 @@ export { useNuxtApp } from './core/nuxt.js'
 ```vue
 	<ClientOnly> slots .... </ClientOnly> 
 ```
+
+
+
+
+
+## build config
+
+New packaging configuration properties added 【[external](https://cn.vitejs.dev/config/ssr-options.html#ssr-external)、[noExternal](https://cn.vitejs.dev/config/ssr-options.html#ssr-noexternal)】
+
+vite.config.js 
+
+```json
+import path from 'node:path'
+import { defineConfig } from 'vite'
+
+import ViteNuxtPlugin from '@impoh/nuxt/plugin'
+
+
+
+export default defineConfig(({ command, ssrBuild }) => ({
+  base: '/',
+  resolve: {
+    alias: {
+      '@': path.resolve(process.cwd(), './src')
+    }
+  },
+  plugins: [
+
+    ViteNuxtPlugin({
+      // 打包时打包对应依赖
+      ssr: {
+        noExternal: [
+          'element-plus',
+          'markdown-it',
+          'markdown-it-anchor',
+          'markdown-it-attrs',
+          'markdown-it-container',
+          'markdown-it-emoji',
+          'nanoid',
+          // 'picocolors',
+          // 'shiki',
+          'shiki-processor',
+          'url'
+        ]
+      }
+    }),
+
+  ],
+
+
+}))
+
+```
+
