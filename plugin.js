@@ -31,7 +31,7 @@ export default function ViteSsrPlugin (options = {}) {
 
   const optimizedDepChunkRE = /\/chunk-[A-Z\d]{8}\.js/
   return {
-    name: 'impoh-nuxt', // 必须的，将会在 warning 和 error 中显示
+    name: 'impoh-nuxt',   // 必须的，将会在 warning 和 error 中显示
     config (config, { command, mode, ssrBuild }) {
       if (command === 'build' && ssrBuild) {
 

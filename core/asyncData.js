@@ -176,7 +176,7 @@ export function useLazyAsyncData (...args) {
 
 
 /**
- * 
+ * 获取数据
  * @param {*} key 
  * @returns 
  */
@@ -192,7 +192,7 @@ export function useNuxtData (key) {
 
 
 /**
- * 
+ * 更新数据
  * @param {*} keys 
  * @returns 
  */
@@ -207,7 +207,7 @@ export async function refreshNuxtData (keys) {
 
 
 /**
- * 
+ * 设置默认数据
  * @param {*} keys 
  */
 export function clearNuxtData (keys) {

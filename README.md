@@ -43,12 +43,11 @@ New packaging configuration properties added 【[external](https://cn.vitejs.dev
 
 vite.config.js 
 
-```json
+```js
 import path from 'node:path'
 import { defineConfig } from 'vite'
 
 import ViteNuxtPlugin from '@impoh/nuxt/plugin'
-
 
 
 export default defineConfig(({ command, ssrBuild }) => ({
@@ -78,9 +77,7 @@ export default defineConfig(({ command, ssrBuild }) => ({
         ]
       }
     }),
-
   ],
-
 
 }))
 

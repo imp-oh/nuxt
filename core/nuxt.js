@@ -3,6 +3,7 @@ import { createHooks } from "hookable"
 import { getContext } from "unctx"
 import { $fetch } from 'ofetch'
 import { ClientOnly } from './components.js'
+import devalue from '@nuxt/devalue'
 
 const nuxtAppCtx = /* @__PURE__ */ getContext("nuxt-app")
 export const NuxtPluginIndicator = "__nuxt_plugin"
@@ -19,14 +20,14 @@ export function createNuxtApp (options) {
   const nuxtApp = {
     provide: void 0,
     globalName: "nuxt",
-    client:process.client,
-    server:process.server,
+    client: process.client,
+    server: process.server,
     payload: reactive({
       config: {},
       data: {},
       state: {},
       _errors: {},
-      ...process.client ? window.__CESSR__ ?? {} : { serverRendered: true }
+      ...process.client ? devalue(window.__CESSR__ ?? {}) : { serverRendered: true }
     }),
     static: {
       data: {}

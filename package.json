@@ -1,6 +1,6 @@
 {
   "name": "@impoh/nuxt",
-  "version": "0.0.7-beta.3",
+  "version": "0.0.7-beta.4",
   "description": "vite-ssr-api,ssr,vue,nuxt",
   "main": "index.js",
   "type": "module",
@@ -46,6 +46,7 @@
     "plugin.js"
   ],
   "dependencies": {
+    "@nuxt/devalue": "^2.0.2",
     "@vueuse/head": "^1.1.26",
     "cookie-es": "^1.0.0",
     "destr": "^2.0.0",
